@@ -1,0 +1,61 @@
+﻿
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+table, td, th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table {    
+    width: 700px; 
+}
+
+th {
+    background: LightCyan;   
+}
+
+
+
+.comment {
+    font-style: italic;
+    font-size: small;
+    color: palevioletred;
+}
+
+.form {
+    margin: 30px 0;
+    padding: 10px;
+    border: 1px solid gray;
+    width: 350px;   
+}
+
+.sort {
+    font-style: normal;
+    color: midnightblue;
+    
+}
+
+    .sort a {
+        font-size:x-large;
+    }

@@ -1,0 +1,88 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+</head>
+<body>
+    <div>
+        <h1>Записная книжка сотрудников</h1>
+        <p>@Html.ActionLink("Добавить сотрудника", "NewEmployeeForm")</p>
+
+        @*Search employees by selected parameter *@
+        <div class="form">
+            @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+            {
+                <p>
+                    <b>Поиск по:</b>
+
+                    @Html.RadioButton("searchParameter", "surname", true)
+                    <span>Фамилия</span>
+                    @Html.RadioButton("searchParameter", "name")
+                    <span>Имя</span>
+                    @Html.RadioButton("searchParameter", "phone")
+                    <span>Телефон</span>
+                </p>
+                @Html.TextBox("searchValue", "", new { size = "40" })
+                <button name="actionSearch">Искать</button>
+
+                <p>@Html.ActionLink("Сбросить параметры поиска", "Index")</p>
+
+            }
+        </div>
+
+        @*Table of information about employees *@
+        <table>
+            <tr>
+                <th>
+                    Фамилия
+                    <span class="sort" @ViewBag.Hidden>
+                        <br /> сортировать:
+                        @Html.ActionLink("↓", "SortBySurname", new { ascending = true })
+                        @Html.ActionLink("↑ ", "SortBySurname", new { ascending = false })
+                    </span>
+                </th>
+                <th>
+                    Имя
+                </th>
+                <th>
+
+                    Год рождения
+                    <span class="sort" @ViewBag.Hidden>
+                        <br /> сортировать:
+                        @Html.ActionLink("↓", "SortByYear", new { ascending = true })
+                        @Html.ActionLink("↑", "SortByYear", new { ascending = false })
+
+                    </span>
+
+                </th>
+                <th>Телефон</th>
+                <th></th>
+            </tr>
+
+            @foreach (var emp in ViewBag.Employees)
+            {
+                <tr>
+                    <td><p>@emp.Surname</p></td>
+                    <td><p>@emp.Name</p></td>
+                    <td><p>@emp.YearOfBirth</p></td>
+                    <td><p><span class="comment">+7</span> @emp.Phone</p></td>
+                    <td>
+                        <p>
+                            @Html.ActionLink("Удалить", "DeleteEmployee",
+                       new { surname = emp.Surname, name = emp.Name, yearOfBirth = emp.YearOfBirth, phone = emp.Phone })
+                        </p>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+﻿@model EmployeeNotebook.Models.Employee
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>NewEmployeeForm</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+</head>
+<body>
+    
+    @using (Html.BeginForm())
+    {
+        @*FORM of new employee*@
+        @Html.ValidationSummary()
+        <p>Фамилия: @Html.TextBoxFor(x => x.Surname)</p>
+        <p>Имя: @Html.TextBoxFor(x => x.Name)</p>
+        <p>Год рождения: @Html.TextBoxFor(x => x.YearOfBirth)</p>
+        <p>
+            Телефон <span class="comment">+7 XXXXXXXXXX</span>:
+            +7 @Html.TextBoxFor(x => x.Phone)
+        </p>
+
+        <input type="submit" value="Создать" />
+    }
+
+</body>
+</html>
